@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>LiveChat Widget</title>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -34,7 +34,7 @@
       zIndex: "9999",
     });
 
-    // 聊天窗口
+    // 创建聊天窗口
     const chatBox = document.createElement("div");
     chatBox.id = "chatbox";
     chatBox.innerHTML = `
@@ -87,7 +87,7 @@
     document.body.appendChild(button);
     document.body.appendChild(chatBox);
 
-    // 切换显示
+    // 切换显示聊天窗口
     button.onclick = () => {
       chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
     };
@@ -98,6 +98,7 @@
 
     const userId = "user_" + Math.random().toString(36).substr(2, 6);
 
+    // 发送消息到 Firebase
     sendBtn.onclick = () => {
       const text = msgInput.value.trim();
       if (!text) return;
@@ -105,6 +106,7 @@
       msgInput.value = "";
     };
 
+    // 接收实时消息
     onChildAdded(chatRef, (snapshot) => {
       const msg = snapshot.val();
       const div = document.createElement("div");
